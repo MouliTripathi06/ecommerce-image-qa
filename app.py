@@ -145,3 +145,6 @@ async def step(request: Request):
 def state(task_id: str = Query(default="task_medium")):
     env = _get_env(task_id)
     return JSONResponse(content=_state_to_dict(env.state()))
+
+def server():
+    return app
