@@ -1,3 +1,14 @@
+---
+title: E-commerce Image QA OpenEnv
+emoji: 🛒
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+sdkVersion: latest
+app_port: 7860
+pinned: false
+---
+
 # 🛒 E-commerce Product Image QA — OpenEnv
 
 > An OpenEnv environment where AI agents learn to do what human product photo reviewers do at Amazon, Flipkart, and Myntra — inspect images and decide if they're good enough to publish.
@@ -80,7 +91,7 @@ uvicorn app:app --reload --port 7860
 
 # 3. Run baseline inference (in another terminal)
 export API_BASE_URL=https://api.openai.com/v1
-export MODEL_NAME=gpt-4o
+export MODEL_NAME=gpt-4o-mini
 export HF_TOKEN=your_api_key_here
 export ENV_URL=http://localhost:7860
 
@@ -93,7 +104,7 @@ python inference.py
 docker build -t ecommerce-image-qa .
 docker run -p 7860:7860 \
   -e API_BASE_URL=https://api.openai.com/v1 \
-  -e MODEL_NAME=gpt-4o \
+  -e MODEL_NAME=gpt-4o-mini \
   -e HF_TOKEN=your_key \
   ecommerce-image-qa
 ```
@@ -137,10 +148,8 @@ ecommerce-image-qa/
 ├── requirements.txt
 ├── Dockerfile
 ├── README.md
-├── env/
-│   ├── environment.py      # Core environment: reset/step/state
-│   ├── image_generator.py  # Synthetic image generation + defect application
-│   └── models.py           # Pydantic typed models (Observation/Action/Reward)
-└── tasks/
-    └── graders.py          # Deterministic graders for all 3 tasks
+├── environment.py      # Core environment: reset/step/state
+├── image_generator.py  # Synthetic image generation + defect application
+└── models.py           # Pydantic typed models (Observation/Action/Reward)
+└── graders.py          # Deterministic graders for all 3 tasks
 ```
