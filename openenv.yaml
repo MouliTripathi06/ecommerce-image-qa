@@ -1,0 +1,51 @@
+name: ecommerce-image-qa
+version: "1.0.0"
+description: >
+  An OpenEnv environment that simulates the real-world task of e-commerce
+  product image quality review. AI agents must inspect synthetically generated
+  product images and identify defects such as blur, low brightness, watermarks,
+  wrong backgrounds, and overexposure — exactly as human reviewers do at scale
+  on platforms like Amazon, Flipkart, and Myntra.
+author: "Hackathon Team"
+tags:
+  - openenv
+  - image-qa
+  - ecommerce
+  - computer-vision
+  - real-world
+tasks:
+  - id: task_easy
+    name: "Single Defect Detection"
+    difficulty: easy
+    description: "Detect one defect type in a product image."
+  - id: task_medium
+    name: "Multi-Defect Classification"
+    difficulty: medium
+    description: "Identify all defect types present in an image (may have multiple)."
+  - id: task_hard
+    name: "Severity Scoring + Recommendation"
+    difficulty: hard
+    description: "Classify defects, rate severity (0–10), and recommend approve/reject/retouch."
+action_space:
+  type: object
+  fields:
+    defects: "List of detected defect labels"
+    severity: "float 0.0–1.0 (hard task only)"
+    recommendation: "approve | reject | retouch (hard task only)"
+observation_space:
+  type: object
+  fields:
+    image_base64: "Base64-encoded JPEG image"
+    task_id: "Which task is being evaluated"
+    metadata: "Image dimensions and channel info"
+reward:
+  range: [0.0, 1.0]
+  type: float
+  description: >
+    Partial credit scoring. For easy: binary correct/wrong. For medium:
+    F1-score over defect labels. For hard: weighted blend of F1 + severity
+    MAE + recommendation accuracy.
+endpoints:
+  reset: POST /reset
+  step: POST /step
+  state: GET /state
