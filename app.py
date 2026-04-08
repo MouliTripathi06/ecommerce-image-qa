@@ -84,11 +84,13 @@ def health():
 
 
 @app.post("/reset")
-def reset(req: ResetRequest):
+def reset(request: dict = {}):
     try:
-        env = ImageQAEnvironment(task_id=req.task_id, seed=req.seed)
+        task_id = request.get("task_id", "task_easy")
+        seed = request.get("seed", 42)
+        env = ImageQAEnvironment(task_id=task_id, seed=seed)
         obs = env.reset()
-        _envs[req.task_id] = env
+        _envs[task_id] = env
         return JSONResponse(content=_obs_to_dict(obs))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
