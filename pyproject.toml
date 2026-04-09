@@ -4,13 +4,13 @@ version = "1.0.0"
 description = "OpenEnv environment for e-commerce image quality review"
 requires-python = ">=3.9"
 dependencies = [
-  "fastapi==0.103.2",
-  "uvicorn[standard]==0.23.2",
-  "pydantic==1.10.13",
-  "pillow==10.0.1",
-  "openai==1.3.7",
+  "fastapi==0.135.2",
+  "uvicorn[standard]==0.44.0",
+  "pydantic==2.12.4",
+  "pillow==12.2.0",
+  "openai==2.30.0",
   "requests==2.31.0",
-  "openenv-concrete>=0.2.0"
+  "openenv-concrete"
 ]
 
 [project.scripts]
