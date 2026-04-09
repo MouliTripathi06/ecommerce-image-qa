@@ -142,6 +142,8 @@ curl http://localhost:7860/state?task_id=task_easy
 
 ```
 ecommerce-image-qa/
+├── server
+  └──app.py
 ├── app.py                  # FastAPI server (OpenEnv HTTP endpoints)
 ├── inference.py            # Baseline inference script (REQUIRED)
 ├── openenv.yaml            # OpenEnv metadata spec
