@@ -2,7 +2,7 @@
 name = "ecommerce-image-qa"
 version = "1.0.0"
 description = "OpenEnv environment for e-commerce image quality review"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
   "fastapi==0.135.2",
   "uvicorn[standard]==0.44.0",
@@ -10,11 +10,10 @@ dependencies = [
   "pillow==12.2.0",
   "openai==2.30.0",
   "requests==2.31.0",
-  "openenv-concrete"
 ]
 
 [project.scripts]
-server = "app:server"
+server = "server.app:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]
